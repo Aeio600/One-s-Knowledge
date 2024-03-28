@@ -1,7 +1,7 @@
 
 /* 7种基础类型: string, number, null, undefined, boolean, void, symbol */
-let a:string = "HelloWworld"
-console.log(a)
+// let a:string = "HelloWworld"
+// console.log(a)
 
 /* 4种对象类型: (1)基础对象类型 (2)数组类型 (3)类 类型 (4)函数类型 */
 // (1)
