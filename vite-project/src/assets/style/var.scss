@@ -1,0 +1,15 @@
+:root {
+  // 
+  --var-color-text-primary: #0ab7ed;
+  --var-color-text-secondary: #eef606;
+  --var-color-css3d-hover: #37ebf5;
+}
+
+
+html.dark {
+  /* 自定义深色背景颜色 */
+
+  .el-switch {
+    --el-switch-on-color: #0F98C2;
+  }
+}

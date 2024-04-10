@@ -1,0 +1,62 @@
+.leave-left-enter-active ,
+.leave-left-leave-active  {
+  transition: all 0.3s ease-in-out;
+}
+
+.leave-left-enter-from ,
+.leave-left-leave-to  {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+
+.leave-bottom-enter-active ,
+.leave-bottom-leave-active  {
+  transition: all 0.3s ease-in-out;
+}
+
+.leave-bottom-enter-from ,
+.leave-bottom-leave-to  {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.leave-right-enter-active ,
+.leave-right-leave-active  {
+  transition: all 0.3s ease-in-out;
+}
+
+.leave-right-enter-from ,
+.leave-right-leave-to  {
+  transform: translateX(50px);
+  opacity: 0;
+}
+.leave-top-enter-active ,
+.leave-top-leave-active  {
+  transition: all 0.3s ease-in-out;
+}
+
+.leave-top-enter-from ,
+.leave-top-leave-to  {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+
+
+// 中间缩放动画
+.center-scale-enter-active ,
+.center-scale-leave-active  {
+  transition: all 0.3s ease-in-out;
+}
+
+.center-scale-enter-from ,
+.center-scale-leave-to  {
+  pointer-events: none;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+
+
+
+

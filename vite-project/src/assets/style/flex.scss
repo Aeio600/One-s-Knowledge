@@ -1,0 +1,122 @@
+$name: flex;
+
+@mixin setParam($name) {
+  @if $name == start {
+    justify-content: flex-start;
+  }
+  @if $name == center {
+    justify-content: center;
+  }
+  @if $name == end {
+    justify-content: flex-end;
+  }
+  @if $name == between {
+    justify-content: space-between;
+  }
+  @if $name == around {
+    justify-content: space-around;
+  }
+  @if $name == evenly {
+    justify-content: space-evenly;
+  }
+
+  @if $name == left {
+    align-items: flex-start;
+  }
+  @if $name == middle {
+    align-items: center;
+  }
+  @if $name == right {
+    align-items: flex-end;
+  }
+
+  @if $name == wrap {
+    flex-wrap: wrap;
+  }
+}
+
+$directionParms: row, row-reverse, column, column-reverse;
+$justifyParams: start, center, end, between, around, evenly, wrap;
+$alignParams: left, middle, right;
+
+@mixin flex-justify {
+  @each $justify in $justifyParams {
+    .#{$name}-#{$justify} {
+      @include setParam($justify);
+    }
+  }
+  .#{$name}-wrap {
+    @include setParam(wrap);
+  }
+}
+
+@mixin flex-align {
+  @each $align in $alignParams {
+    .#{$name}-#{$align} {
+      @include setParam($align);
+    }
+  }
+  .#{$name}-wrap {
+    @include setParam(wrap);
+  }
+}
+
+@mixin flex-item {
+  &.#{$name}-wrap {
+    @include setParam(wrap);
+  }
+  & > .#{$name}-auto {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    overflow: hidden;
+  }
+  & > .#{$name}-none {
+    flex: none;
+  }
+  & > .#{$name}-end {
+    align-self: flex-end;
+  }
+  & > .#{$name}-start {
+    align-self: flex-start;
+  }
+}
+
+@mixin setDirection($direction) {
+  display: flex;
+  flex-direction: $direction;
+  @include flex-item;
+}
+
+@each $direction in $directionParms {
+  // flex-row flex-center
+  .#{$name}-#{$direction} {
+    @include setDirection($direction);
+    @include flex-align;
+    @include flex-justify;
+  }
+  // flex-row-start
+  @each $justify in $justifyParams {
+    .#{$name}-#{$direction}-#{$justify} {
+      @include setDirection($direction);
+      @include setParam($justify);
+    }
+  }
+  // flex-row-middle
+  @each $align in $alignParams {
+    .#{$name}-#{$direction}-#{$align} {
+      @include setDirection($direction);
+      @include setParam($align);
+    }
+  }
+  // flex-row-center-middle
+  @each $justify in $justifyParams {
+    @each $align in $alignParams {
+      .#{$name}-#{$direction}-#{$justify}-#{$align} {
+        @include setDirection($direction);
+        @include setParam($justify);
+        @include setParam($align);
+      }
+    }
+  }
+}

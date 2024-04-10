@@ -1,7 +1,7 @@
 
 /* 7种基础类型: string, number, null, undefined, boolean, void, symbol */
-// let a:string = "HelloWworld"
-// console.log(a)
+let a:string = "HelloWworld"
+console.log(a)
 
 /* 4种对象类型: (1)基础对象类型 (2)数组类型 (3)类 类型 (4)函数类型 */
 // (1)
@@ -127,6 +127,117 @@ class Person1 {
 }
 const person = new Person1('jsPang')
 console.log(person.name) 
+
+/* 类的Getter Setter static  只读属性readonly*/
+class Man {
+  constructor(private _age:number){}
+  get age() {
+    return this._age - 10
+  }
+  set age(age:number){
+    this._age = age
+  }
+  static sayHello(){
+    return 'say Hello'
+  }
+  // public readonly _name:string
+  // constructor(name:string) {
+  //   this._name = name
+  // }
+}
+const man = new Man(28)
+// 使用static,不再需要new对象,可以直接调用
+console.log(Man.sayHello())
+
+/* 抽象类 abstract */
+abstract class Women {
+  abstract skill()
+}
+class Waiter extends Women {
+   skill() {
+     console.log('foo')
+  }
+}
+
+/* 联合类型 类型保护 */
+interface Waiter {
+  anjiao: boolean;
+  say: ()=>{}
+}
+interface Teacher {
+  anjiao: boolean;
+  skill: ()=>{}
+}
+function judgeWho(animal: Waiter|Teacher){
+  // if(animal.anjiao){
+  //   // as 断言
+  //   (animal as Teacher).skill()
+  // }else{
+  //   (animal as Waiter).say()
+  // }
+  if('skill' in animal){
+    animal.skill()
+  }else{
+    animal.say()
+  } 
+}
+
+/* enum 枚举类型 */
+enum Status {
+  Message = 1, // 默认是0
+  Foo,
+}
+
+/* 泛型 */
+function join(first: string|number, second:string|number){
+  return `${first}${second}`
+}
+join('foo','.com')
+// 在上面函数的基础上,实现"只能都传字符串"
+function join1<T>(first: T, second:T){
+  return `${first}${second}`
+}
+join1<string>('foo','.com')
+
+// 泛型中数组的使用
+function myFun<T>(params:T[]) {
+  return params
+} // 写法一
+function myFun1<T>(params:Array<T>) {
+  return params
+} // 写法二
+myFun<string>(['123','456'])
+// 多个泛型
+function join2<T,P>(first: T,second: P) {
+  return `${first}${second}`
+}
+join2<string,number>('1',2)
+
+// 在类中使用泛型(先声明一个接口,并由泛型继承)
+interface Man1 {
+  name:string;
+}
+class SelectMan<T extends Man1> {
+  constructor(private men: T[]){}
+  getMan(index:number):string{
+    return this.men[index].name
+  }
+}
+const selectMan = new SelectMan([
+  { name: 'foo' },
+  { name: 'foo1' },
+  { name: 'foo2' },
+])
+
+//泛型只能从string或number中选
+class SelectGirl<T extends string|number> {
+  constructor(private girls:T[]) {}
+  getGirl(index:number):T {
+    return this.girls[index]
+  }
+}
+const selectGirl = new SelectGirl<string>(['foo','foo1','foo2'])
+
 
 
 

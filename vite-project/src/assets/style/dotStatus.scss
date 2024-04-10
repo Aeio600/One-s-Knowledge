@@ -1,0 +1,46 @@
+.dot-normal {
+  --size: 8px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 10px;
+  box-shadow: 0 0 5px 5px green;
+  background-image: radial-gradient(circle at center, #fff 0, rgb(49, 199, 49), green 100%);
+  animation: zcAn 3s linear infinite;
+}
+.dot-error {
+  --size: 8px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px red;
+  background-image: radial-gradient(circle at center, #fff 0, red 100%);
+  animation: ycAn 3s linear infinite;
+}
+
+@keyframes zcAn {
+  0% {
+    box-shadow: 0 0 10px 3px green;
+  }
+
+  50% {
+    box-shadow: 0 0 0px 0px green;
+  }
+
+  100% {
+    box-shadow: 0 0 10px 3px green;
+  }
+}
+
+@keyframes ycAn {
+  0% {
+    box-shadow: 0 0 10px 3px red;
+  }
+
+  50% {
+    box-shadow: 0 0 0px 0px red;
+  }
+
+  100% {
+    box-shadow: 0 0 10px 3px red;
+  }
+}

@@ -1,0 +1,1 @@
+import { Single } from "@/assets/js/single"
